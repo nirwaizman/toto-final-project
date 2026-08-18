@@ -8,3 +8,4 @@ __pycache__/
 data/clean/*.csv
 !data/clean/.gitkeep
 outputs/features.csv
+__pycache__/

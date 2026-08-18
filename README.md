@@ -1,44 +1,93 @@
 # 🐾 Toto — Industry-Simulated AI Product Workflow
 
 **Final Project — AI Development & Collaboration Course**
+**Author:** Nir Waizman
 
-## Project Concept
+---
 
-This project simulates how a real AI product team collaborates using **CrewAI**.
-It is inspired by "Toto" — a real, daily-operating personal AI assistant — reimagined
-as a two-crew hospitality analytics pipeline:
+## 🎯 What this is
 
-- **Crew 1 — Data Analyst Crew**: ingests, cleans, and explores a hotel/Airbnb dataset,
-  producing descriptive insights and a dataset contract.
-- **Crew 2 — Data Scientist Crew**: consumes the contract, engineers features, trains
-  a predictive model, and evaluates it.
-- **CrewAI Flow**: automates the handoff between the two crews with validation gates.
+A two-crew **CrewAI** pipeline that simulates how a real AI product team turns
+raw hotel booking data into a deployable cancellation-prediction model —
+inspired by *Toto*, a real personal AI assistant the author operates daily.
 
-## Status
+- **Crew 1 — Data Analyst** (4 agents): ingest → clean → EDA → insights + dataset contract
+- **CrewAI Flow**: automated handoff with validation gates, fails gracefully
+- **Crew 2 — Data Scientist** (3 agents): validate → feature engineering → train/compare models
+- **Streamlit app**: interactive UI to run the flow and explore results live
 
-🚧 Work in progress — built step by step.
+## 📊 Results
 
-## Structure
+- Dataset: [Hotel Booking Demand](data/DATASET_INFO.md) — 119,390 real reservations (Portugal, 2015-2017)
+- Best model: **GradientBoostingClassifier** — ROC-AUC **0.876**, F1 **0.702**
+- Full comparison: [`outputs/evaluation_report.md`](outputs/evaluation_report.md)
+- Model card (purpose, limitations, ethics): [`outputs/model_card.md`](outputs/model_card.md)
+- Business insights: [`outputs/insights.md`](outputs/insights.md)
+
+## 📁 Key Files
+
+| File | What it is |
+|---|---|
+| [`slides/toto-final-project.pptx`](slides/toto-final-project.pptx) | 15-slide presentation |
+| [`demo/toto-demo.mp4`](demo/toto-demo.mp4) | 40s demo video of the running app |
+| [`flow/main_flow.py`](flow/main_flow.py) | CrewAI Flow orchestration |
+| [`crew_analyst/`](crew_analyst/) | Crew 1 — Data Analyst agents & tools |
+| [`crew_scientist/`](crew_scientist/) | Crew 2 — Data Scientist agents & tools |
+| [`app/streamlit_app.py`](app/streamlit_app.py) | Streamlit UI |
+| [`outputs/`](outputs/) | All generated artifacts (contract, EDA, model, reports) |
+
+## 🚀 Run it yourself
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+echo "ANTHROPIC_API_KEY=your_key_here" > .env
+echo "MODEL=claude-sonnet-4-6" >> .env
+
+# Run the full CrewAI Flow (Crew 1 -> validation -> Crew 2)
+python3 -m flow.main_flow
+
+# Or launch the interactive UI
+streamlit run app/streamlit_app.py
+```
+
+## 🏗️ Architecture
 
 ```
-final-project/
-├── crew_analyst/       # Crew 1 — Data Analyst
-├── crew_scientist/      # Crew 2 — Data Scientist
-├── flow/                 # CrewAI Flow orchestration
-├── data/                 # raw + clean datasets
-├── outputs/               # generated artifacts
-├── app/                   # Streamlit UI
-├── slides/                # presentation
-└── demo/                  # demo video
+data/raw/hotel_bookings.csv
+        │
+        ▼
+┌───────────────────────┐
+│  Crew 1 — Data Analyst │  4 agents: Ingestion → Cleaning → EDA → Insights/Contract
+└───────────┬───────────┘
+            │  outputs: clean_data.csv, eda_report.html,
+            │           insights.md, dataset_contract.json
+            ▼
+   ✅ Validation Gate (CrewAI Flow)
+   confirms contract matches cleaned data
+            │
+            ▼
+┌─────────────────────────┐
+│ Crew 2 — Data Scientist  │  3 agents: Validate → Features → Train/Evaluate
+└───────────┬──────────────┘
+            │  outputs: features.csv, model.pkl,
+            │           evaluation_report.md, model_card.md
+            ▼
+   ✅ Final Validation Gate
+            │
+            ▼
+      Streamlit App (live predictions)
 ```
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- CrewAI, Python
-- Pandas, Scikit-Learn, Matplotlib/Seaborn
-- Streamlit
-- GitHub
+CrewAI · Python 3.12 · Anthropic Claude · Pandas · Scikit-Learn · Streamlit · GitHub
 
-## Author
+## ⚠️ Data Leakage Discipline
 
-Nir Waizman
+`reservation_status` and `reservation_status_date` are recorded **after** the
+booking outcome is known. Both crews explicitly exclude them from model
+features — flagged in the dataset contract, the model card, and enforced in
+code (`crew_scientist/tools.py`).
