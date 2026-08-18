@@ -7,3 +7,7 @@ matplotlib
 seaborn
 streamlit
 joblib
+python-dotenv
+# slide-deck tooling (optional)
+python-pptx
+python-bidi

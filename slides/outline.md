@@ -65,13 +65,13 @@
 ## Model Results
 - Compared RandomForest vs GradientBoosting
 - Temporal train/test split (train 2015-2016, test 2017) — no data leakage
-- GradientBoosting selected — ROC-AUC 0.876, F1 0.702
+- GradientBoosting selected — ROC-AUC 0.875, F1 0.693
 - reservation_status excluded as a leakage column — critical modeling discipline
 
 ---
 ## Model Card — Responsible AI
 - Purpose: support overbooking/deposit decisions, not deny individual guests
-- Limitations: Portugal-only data, ~63% recall, no pandemic-era patterns
+- Limitations: Portugal-only data, ~62% recall, no pandemic-era patterns
 - Ethical considerations: country feature flagged as a bias risk
 - Predictions are advisory — human review required before policy action
 

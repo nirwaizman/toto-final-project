@@ -142,45 +142,94 @@ def run_eda() -> str:
     return json.dumps(metrics, ensure_ascii=False, indent=2)
 
 
+@tool("Write insights.md")
+def write_insights(content: str) -> str:
+    """Writes the given Markdown text to outputs/insights.md. Pass the full
+    business-insights report (5-8 bullet points + leakage warning) as `content`.
+    Returns a JSON confirmation with the saved path and character count."""
+    os.makedirs(os.path.dirname(INSIGHTS_PATH), exist_ok=True)
+    with open(INSIGHTS_PATH, "w", encoding="utf-8") as f:
+        f.write(content.strip() + "\n")
+    return json.dumps({"saved_to": "outputs/insights.md", "chars": len(content)}, ensure_ascii=False)
+
+
+# Columns that are known only AFTER the booking outcome — never model features.
+LEAKAGE_COLUMNS = {
+    "reservation_status": "Directly encodes the outcome (Canceled / Check-Out / No-Show).",
+    "reservation_status_date": "Date the final status was set — exists only post-outcome.",
+}
+# Post-booking / derived columns that are excluded from modeling for other reasons.
+NON_FEATURE_COLUMNS = {
+    "is_canceled": "target column",
+    "arrival_date": "derived datetime (redundant with year/month/day columns)",
+    "assigned_room_type": "assigned at check-in — post-booking information",
+    "arrival_date_year": "used only as the temporal train/test split key, not a feature",
+    "agent": "high-cardinality ID",
+    "company": "high-cardinality ID",
+}
+
+
 @tool("Write dataset_contract.json")
 def write_dataset_contract() -> str:
-    """Writes outputs/dataset_contract.json — the schema, allowed values, and
-    constraints the Data Scientist crew must respect when reading
-    data/clean/clean_data.csv. Call this last, after cleaning and EDA."""
+    """Writes outputs/dataset_contract.json — the machine-readable contract the
+    Data Scientist crew must respect: target column, the explicit list of
+    approved feature_columns (name/type/range or allowed values), leakage
+    columns that must NOT be used, and cleaning assumptions. The CrewAI Flow
+    validation gate checks this file against clean_data.csv. Call this last,
+    after cleaning and EDA."""
     df = pd.read_csv(CLEAN_PATH)
 
+    excluded = set(LEAKAGE_COLUMNS) | set(NON_FEATURE_COLUMNS)
+    feature_columns = []
+    for c in df.columns:
+        if c in excluded:
+            continue
+        s = df[c]
+        if pd.api.types.is_numeric_dtype(s):
+            feature_columns.append({
+                "name": c,
+                "type": "integer" if pd.api.types.is_integer_dtype(s) else "float",
+                "min": float(s.min()),
+                "max": float(s.max()),
+                "nullable": bool(s.isna().any()),
+            })
+        else:
+            values = s.dropna().unique().tolist()
+            entry = {"name": c, "type": "categorical", "nullable": bool(s.isna().any())}
+            if len(values) <= 15:
+                entry["allowed_values"] = sorted(map(str, values))
+            else:
+                entry["cardinality"] = len(values)
+            feature_columns.append(entry)
+
     contract = {
-        "file": "data/clean/clean_data.csv",
+        "contract_version": "1.1.0",
+        "dataset": "data/clean/clean_data.csv",
+        "generated_by": "Crew 1 — Insights & Contract Writer (write_dataset_contract tool)",
+        "row_count": len(df),
+        "total_columns": len(df.columns),
         "target_column": "is_canceled",
         "target_type": "binary (0 = not canceled, 1 = canceled)",
-        "row_count": len(df),
-        "columns": {
-            c: {
-                "dtype": str(df[c].dtype),
-                "nullable": bool(df[c].isna().any()),
-            }
-            for c in df.columns
+        "class_balance": {
+            str(k): round(float(v), 4) for k, v in df["is_canceled"].value_counts(normalize=True).items()
         },
-        "categorical_columns": [
-            "hotel", "meal", "country", "market_segment", "distribution_channel",
-            "reserved_room_type", "assigned_room_type", "deposit_type",
-            "customer_type", "reservation_status",
+        "feature_columns": feature_columns,
+        "leakage_columns": [
+            {"name": k, "reason": v} for k, v in LEAKAGE_COLUMNS.items()
         ],
-        "numeric_columns": [
-            "lead_time", "stays_in_weekend_nights", "stays_in_week_nights",
-            "adults", "children", "babies", "previous_cancellations",
-            "previous_bookings_not_canceled", "booking_changes",
-            "days_in_waiting_list", "adr", "required_car_parking_spaces",
-            "total_of_special_requests",
+        "excluded_columns": [
+            {"name": k, "reason": v} for k, v in NON_FEATURE_COLUMNS.items()
         ],
-        "leakage_warning": (
-            "reservation_status and reservation_status_date are recorded AFTER "
-            "the cancellation outcome is known — they MUST be excluded from "
-            "model features to avoid data leakage."
-        ),
+        "recommended_split": {
+            "type": "temporal",
+            "key": "arrival_date_year",
+            "train": [2015, 2016],
+            "test": [2017],
+        },
         "assumptions": [
             "children/agent/company missing values were imputed as 0",
             "rows with missing country were dropped",
+            "rows with meal == 'Undefined' were dropped",
             "rows with 0 total guests (data artifact) were dropped",
         ],
     }
@@ -189,4 +238,8 @@ def write_dataset_contract() -> str:
     with open(CONTRACT_PATH, "w", encoding="utf-8") as f:
         json.dump(contract, f, ensure_ascii=False, indent=2)
 
-    return json.dumps({"saved_to": "outputs/dataset_contract.json", "columns": len(contract["columns"])}, ensure_ascii=False)
+    return json.dumps({
+        "saved_to": "outputs/dataset_contract.json",
+        "feature_columns": len(feature_columns),
+        "leakage_columns": list(LEAKAGE_COLUMNS),
+    }, ensure_ascii=False)

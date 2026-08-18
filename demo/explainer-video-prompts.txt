@@ -1,0 +1,85 @@
+STYLE tokens used in every block: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism.
+
+Block 1
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A flat vector hotel building icon stands center-frame, surrounded by dozens of small floating booking-card icons drifting past it like a data stream.
+MOTION: Slow push-in toward the hotel icon as booking cards accelerate past in a steady horizontal drift.
+AUDIO: Soft ambient synth pad, gentle data-stream whoosh, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, photographic texture.
+
+Block 2
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: Two abstract vector agent nodes, one navy and one amber, connect via a glowing linking line to form a single collaborative network diagram.
+MOTION: The two nodes drift together from opposite frame edges and lock into place with a soft pulse.
+AUDIO: Warm synth chord swell, subtle mechanical click as the nodes connect, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, human faces.
+
+Block 3
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: Four small vector robot-agent icons stand in a row above a large flowing river of booking-record rectangles pouring in from the left.
+MOTION: Camera drifts right along the row of four agents as the record river flows steadily beneath them.
+AUDIO: Rhythmic data-flow pulse, light percussive ticks, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.
+
+Block 4
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A four-panel grid appears, each panel showing one flat icon in sequence: a magnifying glass, a soap-bubble broom, a bar chart, and a lightbulb.
+MOTION: Each panel lights up one at a time in sequence, left to right, top to bottom, with a soft scale pop.
+AUDIO: Four quick rising synth notes matching each panel activation, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.
+
+Block 5
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: Two flat vector bar charts rise side by side, one taller amber bar labeled with a cancellation symbol clearly higher than the shorter navy bar beside it.
+MOTION: Both bars grow upward from the baseline, the amber bar overshooting and settling higher than the navy bar.
+AUDIO: Rising synth tone with a soft emphasis chime as the taller bar settles, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.
+
+Block 6
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A flat vector document icon unfolds, revealing a checklist with one row highlighted in warning amber and stamped with a small caution triangle icon.
+MOTION: The document unfolds top to bottom, the warning row pulses gently as it reveals itself.
+AUDIO: Paper-unfold rustle sound, a subtle alert chime on the warning row, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, readable text.
+
+Block 7
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A flat vector gate icon with a shield symbol stands between two flowing data streams, the gate glowing green as it opens to let the stream pass through.
+MOTION: The gate slowly rotates open like a valve, releasing the data stream forward in a smooth continuous flow.
+AUDIO: Mechanical gate-unlock click, gentle whoosh as the stream passes through, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.
+
+Block 8
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: Three small vector scientist-agent icons wearing simple flat lab-coat silhouettes stand ready beside a glowing gear icon representing the model pipeline.
+MOTION: The three agents step forward one after another and the gear icon begins a slow steady rotation.
+AUDIO: Mechanical gear-turn hum, three soft footstep-like ticks, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, human faces.
+
+Block 9
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: Two flat vector gear-shaped model icons spin side by side above a split timeline bar dividing past training data from future test data.
+MOTION: Both gears spin at matched steady speed while the timeline bar slides to visually separate past from future segments.
+AUDIO: Dual synchronized gear-hum tones, a soft transition swoosh at the timeline split, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.
+
+Block 10
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A large flat vector circular progress ring fills up almost completely in amber against a navy background, with a checkmark icon appearing at its center.
+MOTION: The ring fills smoothly and quickly from empty to nearly full, ending with the checkmark popping into place at center.
+AUDIO: Rising synth arpeggio building to a satisfying completion chime, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, readable numbers.
+
+Block 11
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: A flat vector identification card icon flips open, revealing three simple labeled sections represented by a target icon, a scale icon, and a balance icon.
+MOTION: The card flips open from closed to open in one smooth continuous rotation, settling flat to reveal its three sections.
+AUDIO: Soft card-flip whoosh, a gentle settling click at the end, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark, readable text.
+
+Block 12
+STYLE REFERENCE: Match the attached reference image EXACTLY. Replicate its look precisely: editorial motion graphics, clean flat vector shapes, bold sans-serif accents, confident grid layouts, muted navy-and-amber corporate palette, crisp geometric icons, subtle paper-grain texture, non-photorealistic, illustrated, not a photo, no live-action, no realism. Every element below rendered in that identical style.
+SCENE: The two crew-network diagrams from earlier reunite into one unified glowing emblem, surrounded by a calm ring of orbiting small check-mark icons.
+MOTION: The two networks drift together and merge into one emblem at center frame, orbiting checkmarks settling into a steady slow rotation.
+AUDIO: Warm resolving synth chord, soft ambient hum fading gently, no voice.
+NEGATIVE: color drift, photorealism, 3D render, lip-sync, captions, on-screen text, logos, watermark.

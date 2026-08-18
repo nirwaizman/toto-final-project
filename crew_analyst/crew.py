@@ -13,12 +13,17 @@ import os
 from crewai import Agent, Crew, Process, Task
 from crewai.llm import LLM
 
+from dotenv import load_dotenv
+
 from crew_analyst.tools import (
     clean_dataset,
     load_and_profile_dataset,
     run_eda,
     write_dataset_contract,
+    write_insights,
 )
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 OUTPUTS_DIR = os.path.join(os.path.dirname(__file__), "..", "outputs")
 INSIGHTS_PATH = os.path.join(OUTPUTS_DIR, "insights.md")
@@ -71,7 +76,7 @@ def build_analyst_crew() -> Crew:
              "define the formal dataset_contract.json for the Data Scientist crew.",
         backstory="You are the bridge between analysis and engineering — you write "
                    "clear insights for management and precise contracts for engineers.",
-        tools=[write_dataset_contract],
+        tools=[write_insights, write_dataset_contract],
         llm=llm,
         verbose=True,
     )
@@ -106,12 +111,15 @@ def build_analyst_crew() -> Crew:
 
     insights_task = Task(
         description=(
-            "Based on the EDA metrics, write outputs/insights.md with 5-8 bullet-point "
+            "Based on the EDA metrics, write a Markdown report with 5-8 bullet-point "
             "business insights (e.g. which hotel has higher cancellations and why that "
-            "matters for overbooking policy, which segments/countries drive revenue). "
+            "matters for overbooking policy, which segments/countries drive revenue), "
+            "using the REAL numbers from the EDA. End the report with a short "
+            "'Data Leakage Warning' section that explicitly flags reservation_status and "
+            "reservation_status_date as columns that must NOT be used as model features. "
+            "Save it by calling the write_insights tool with the full Markdown as `content`. "
             "Then call the write_dataset_contract tool to produce outputs/dataset_contract.json "
-            "for the Data Scientist crew. IMPORTANT: explicitly flag reservation_status and "
-            "reservation_status_date as leakage columns that must NOT be used as model features."
+            "for the Data Scientist crew."
         ),
         expected_output=(
             "Confirmation that insights.md was written with business insights, and that "
@@ -130,8 +138,8 @@ def build_analyst_crew() -> Crew:
 
 
 def run() -> str:
-    """Runs Crew 1 end to end. Also writes insights.md directly as a safety net
-    in case the agent's tool-writing behavior varies between runs."""
+    """Runs Crew 1 end to end. Also writes insights.md as a safety net in
+    case the agent skipped the write_insights tool (should not happen)."""
     crew = build_analyst_crew()
     result = crew.kickoff()
 

@@ -17,11 +17,15 @@ import sys
 from datetime import datetime, timezone
 
 from crewai.flow.flow import Flow, listen, start
+from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from crew_analyst.crew import run as run_analyst_crew
 from crew_scientist.crew import run as run_scientist_crew
+from crew_scientist.tools import LEAKAGE_COLUMNS
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 logging.basicConfig(
     level=logging.INFO,
@@ -120,24 +124,41 @@ class TotoFlow(Flow):
                 f"Validation gate failed — contract target column '{target_col}' not in clean_data.csv"
             )
 
-        declared_cols = {c["name"] for c in contract.get("feature_columns", [])}
+        declared_cols = {
+            c["name"] for c in contract.get("feature_columns", [])
+            if isinstance(c, dict) and "name" in c
+        }
+        if not declared_cols:
+            self._fail("validation_gate",
+                       "Contract declares NO feature_columns — refusing to hand off an empty contract")
+
         missing_cols = [c for c in declared_cols if c not in df.columns]
         if missing_cols:
-            _log_event(
-                self.events, "validation_gate", "failed",
-                f"Contract declares columns not present in data: {missing_cols}",
-            )
-            _write_run_log(self.events)
-            raise FlowValidationError(
-                f"Validation gate failed — contract/data mismatch: {missing_cols}"
-            )
+            self._fail("validation_gate",
+                       f"Contract declares columns not present in data: {missing_cols}")
+
+        leaking = [c for c in LEAKAGE_COLUMNS if c in declared_cols]
+        if leaking:
+            self._fail("validation_gate",
+                       f"Contract declares leakage columns as features: {leaking}")
+
+        contract_rows = contract.get("row_count")
+        if contract_rows is not None and contract_rows != len(df):
+            self._fail("validation_gate",
+                       f"Contract row_count {contract_rows} != clean_data.csv rows {len(df)}")
 
         _log_event(
             self.events, "validation_gate", "passed",
             f"dataset_contract.json matches clean_data.csv ({len(df)} rows, "
-            f"{len(declared_cols)} declared feature columns all present)",
+            f"{len(declared_cols)} declared feature columns all present, "
+            f"leakage columns {LEAKAGE_COLUMNS} not declared as features)",
         )
         return True
+
+    def _fail(self, stage: str, detail: str) -> None:
+        _log_event(self.events, stage, "failed", detail)
+        _write_run_log(self.events)
+        raise FlowValidationError(f"{stage} failed — {detail}")
 
     @listen(validate_handoff)
     def run_scientist_crew(self, _validation_ok):

@@ -1,6 +1,6 @@
 .venv/
 venv/
-__pycache__/
+
 *.pyc
 .DS_Store
 .env
@@ -8,4 +8,7 @@ __pycache__/
 data/clean/*.csv
 !data/clean/.gitkeep
 outputs/features.csv
-__pycache__/
+
+~$*.pptx
+demo/higgsfield_jobs/
+outputs/flow_run_log.json.bak

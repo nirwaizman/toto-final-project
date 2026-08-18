@@ -148,7 +148,11 @@ with tab_model:
 
     if os.path.exists(model_path):
         st.subheader("🔮 Try a Prediction")
-        st.caption("Enter booking details to get a live cancellation probability.")
+        st.caption(
+            "Enter booking details to get a live cancellation probability. "
+            "Fields not shown (country=PRT, arrival month=July, 3-night stay, 2 adults, "
+            "room type A, BB meal, TA/TO channel) are held at typical values."
+        )
         model = joblib.load(model_path)
 
         c1, c2, c3 = st.columns(3)
@@ -182,7 +186,6 @@ with tab_model:
                 "deposit_type": deposit_type,
                 "customer_type": customer_type,
                 "lead_time": lead_time,
-                "arrival_date_year": 2017,
                 "arrival_date_week_number": 27,
                 "arrival_date_day_of_month": 15,
                 "stays_in_weekend_nights": 1,

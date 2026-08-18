@@ -1,0 +1,35 @@
+Block 1
+A hotel group collects thousands of bookings every month, but nobody could answer one question: which reservations were about to be canceled.
+
+Block 2
+So we built Toto, an AI system made of two collaborating crews, each one handling a different half of the problem.
+
+Block 3
+The first crew, four data analyst agents, ingested one hundred nineteen thousand real hotel bookings from Portugal.
+
+Block 4
+One agent profiled the raw data, another cleaned it, a third explored the patterns, and a fourth wrote the business insights.
+
+Block 5
+They discovered that city hotel bookings canceled forty two percent of the time, nearly double the resort hotel rate.
+
+Block 6
+Before handing off, the team wrote a strict data contract, flagging which columns would leak the answer and must never be used.
+
+Block 7
+An automated flow checked that contract against the cleaned data, refusing to continue if anything did not match.
+
+Block 8
+Only then did the second crew begin, three data scientist agents ready to build a real predictive model.
+
+Block 9
+They engineered clean features, trained two competing models, and compared them honestly on unseen future bookings.
+
+Block 10
+The winning model reached eighty seven point six percent accuracy at telling which bookings were truly at risk.
+
+Block 11
+Every decision was documented in a model card, listing its purpose, its limits, and its ethical boundaries.
+
+Block 12
+This is what real collaboration between AI agents looks like: validated, transparent, and built to be trusted.

@@ -1,0 +1,41 @@
+{
+  "run_at": "2026-08-18T17:25:19.300730+00:00",
+  "events": [
+    {
+      "stage": "crew1_analyst",
+      "status": "started",
+      "detail": "",
+      "timestamp": "2026-08-18T17:21:23.927751+00:00"
+    },
+    {
+      "stage": "crew1_analyst",
+      "status": "completed",
+      "detail": "",
+      "timestamp": "2026-08-18T17:24:05.695650+00:00"
+    },
+    {
+      "stage": "validation_gate",
+      "status": "passed",
+      "detail": "dataset_contract.json matches clean_data.csv (117567 rows, 25 declared feature columns all present, leakage columns ['reservation_status', 'reservation_status_date'] not declared as features)",
+      "timestamp": "2026-08-18T17:24:05.887847+00:00"
+    },
+    {
+      "stage": "crew2_scientist",
+      "status": "started",
+      "detail": "",
+      "timestamp": "2026-08-18T17:24:05.889001+00:00"
+    },
+    {
+      "stage": "crew2_scientist",
+      "status": "completed",
+      "detail": "",
+      "timestamp": "2026-08-18T17:25:19.290498+00:00"
+    },
+    {
+      "stage": "final_validation",
+      "status": "passed",
+      "detail": "All required artifacts present",
+      "timestamp": "2026-08-18T17:25:19.299975+00:00"
+    }
+  ]
+}

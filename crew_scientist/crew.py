@@ -12,12 +12,16 @@ import os
 from crewai import Agent, Crew, Process, Task
 from crewai.llm import LLM
 
+from dotenv import load_dotenv
+
 from crew_scientist.tools import (
     engineer_features,
     train_and_evaluate_models,
     validate_contract,
     write_model_card,
 )
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 
 def build_llm() -> LLM:
