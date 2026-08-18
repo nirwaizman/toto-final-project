@@ -1,0 +1,9 @@
+crewai
+crewai-tools
+anthropic
+pandas
+scikit-learn
+matplotlib
+seaborn
+streamlit
+joblib

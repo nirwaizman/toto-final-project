@@ -5,3 +5,6 @@ __pycache__/
 .DS_Store
 .env
 !data/raw/.gitkeep
+data/clean/*.csv
+!data/clean/.gitkeep
+outputs/features.csv
