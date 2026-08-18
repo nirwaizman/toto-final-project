@@ -30,7 +30,8 @@ inspired by *Toto*, a real personal AI assistant the author operates daily.
 |---|---|
 | [`slides/toto-final-project-he.pptx`](slides/toto-final-project-he.pptx) | 16-slide presentation (Hebrew, RTL) — built by `slides/build_deck_he.py` |
 | [`slides/toto-final-project.pptx`](slides/toto-final-project.pptx) | 15-slide presentation (English) |
-| [`demo/toto-demo.mp4`](demo/toto-demo.mp4) | 40s demo video of the running app |
+| [`demo/toto-explainer-2min-he-subs.mp4`](demo/toto-explainer-2min-he-subs.mp4) | 2-min animated explainer (English narration, Hebrew subtitles) — see [`demo/explainer/`](demo/explainer/) |
+| [`demo/toto-demo.mp4`](demo/toto-demo.mp4) | 40s screen-recording demo of the running app |
 | [`outputs/flow_run_log.json`](outputs/flow_run_log.json) | Log of the last full Flow run (both gates passed) |
 | [`flow/main_flow.py`](flow/main_flow.py) | CrewAI Flow orchestration |
 | [`crew_analyst/`](crew_analyst/) | Crew 1 — Data Analyst agents & tools |

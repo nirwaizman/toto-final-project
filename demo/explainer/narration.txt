@@ -1,0 +1,24 @@
+Block 1
+Meet Toto. A small AI assistant that runs an entire data team, turning messy hotel bookings into predictions before anyone checks in.
+Block 2
+Here is the problem. More than one in three hotel bookings gets canceled. Empty rooms, wasted staff, and revenue lost every single day.
+Block 3
+This project simulates a real AI product team. Seven specialized agents work in two crews and hand work to each other automatically.
+Block 4
+Crew one is the data analyst. Its first agent loads over one hundred nineteen thousand real bookings and profiles every single column.
+Block 5
+A cleaning agent fixes missing values and drops broken rows. Then an analyst digs in: city hotels cancel forty two percent of bookings.
+Block 6
+The last analyst writes business insights and a formal data contract, a machine readable promise about what the data really contains.
+Block 7
+Now the flow steps in. A validation gate checks the contract against the real data. If anything is wrong, it stops right there.
+Block 8
+Crew two is the data scientist. It validates the contract again, then builds features, carefully leaving out anything known only after the outcome.
+Block 9
+Two models compete. Random Forest against Gradient Boosting, trained on twenty fifteen and sixteen, then tested on twenty seventeen.
+Block 10
+Gradient Boosting wins, with an area under the curve of point eight seven five. Every metric is written into a transparent report.
+Block 11
+A model card explains what the model is for, its limits, and its ethics. Support planning decisions, never judge an individual guest.
+Block 12
+Finally, a Streamlit app runs the whole flow and serves live predictions. That is Toto. Specialized agents, verified handoffs, real decisions.
