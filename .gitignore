@@ -13,5 +13,3 @@ outputs/features.csv
 demo/higgsfield_jobs/
 outputs/flow_run_log.json.bak
 demo/explainer/build/
-demo/explainer/voices/*.mp3
-demo/explainer/clips/*.mp4
